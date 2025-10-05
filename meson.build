@@ -12,9 +12,6 @@ GENERAL_NAME = 'Fridge'
 PROJECT_DESCRIPTION = 'Simple Vala App Storage Library'
 API_VERSION = '0.1'
 
-src_dir = join_paths(meson.project_source_root(), 'src')
-is_subproject = meson.is_subproject()
-
 pkgconfig = import('pkgconfig')
 PKGCONFIG_DEPS = ['glib-2.0', 'gobject-2.0']
 
@@ -50,6 +47,8 @@ if get_option('enable_valadoc')
     build_by_default: true
   )
 
-  install_subdir(meson.current_source_dir() / 'docs' / meson.project_name(),
-    install_dir: get_option('datadir') / 'devhelp' / 'books')
+  install_subdir(
+    meson.current_source_dir() / 'docs' / meson.project_name(),
+    install_dir: get_option('datadir') / 'devhelp' / 'books'
+  )
 endif

@@ -49,6 +49,7 @@ pkgconfig.generate(
   version: API_VERSION,
   name: meson.project_name(),
   filebase: meson.project_name() + '-' + API_VERSION,
+  subdirs: meson.project_name() + '-' + API_VERSION,
   requires: PKGCONFIG_DEPS,
   description: PROJECT_DESCRIPTION
 )
