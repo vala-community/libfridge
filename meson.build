@@ -36,12 +36,6 @@ if get_option('enable_valadoc')
   libfridge_docs = custom_target(
     'generate-docs',
     input: sources,
-    install: true,
-    # FIXME: Installing to tmp, so the target will be built
-    #        the problem is we cannot access a subfolder of the
-    #        buildtarget via the output parameter.
-    #        Find a nicer solution
-    install_dir: get_option('datadir') / 'devhelp' / 'books',
     command: [
       valadoc,
       '-o', meson.current_source_dir() / 'docs',
@@ -52,8 +46,10 @@ if get_option('enable_valadoc')
       '@INPUT@',
       '--force'
     ],
-    output: GENERAL_NAME + '-' + API_VERSION)
+    output: meson.project_name(),
+    build_by_default: true
+  )
 
-  install_subdir(meson.current_source_dir() / 'docs',
+  install_subdir(meson.current_source_dir() / 'docs' / meson.project_name(),
     install_dir: get_option('datadir') / 'devhelp' / 'books')
 endif
