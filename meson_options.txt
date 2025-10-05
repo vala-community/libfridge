@@ -1,2 +1,35 @@
-option('enable_valadoc', type: 'boolean', value: true)
-
+option(
+  'enable_valadoc',
+  type: 'boolean',
+  value: true
+)
+option(
+  'install_library',
+  type: 'feature',
+  value: 'auto',
+  description: 'Install library',
+)
+option(
+  'install_pkgconfig',
+  type: 'feature',
+  value: 'auto',
+  description: 'Install pkgconfig',
+)
+option(
+  'install_header',
+  type: 'feature',
+  value: 'auto',
+  description: 'Install library header',
+)
+option(
+  'install_vapi',
+  type: 'feature',
+  value: 'auto',
+  description: 'Install library vala api',
+)
+option(
+  'install_gir',
+  type: 'feature',
+  value: 'auto',
+  description: 'Install gobject introspection',
+)
