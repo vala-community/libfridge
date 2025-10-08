@@ -1,6 +1,23 @@
 # libfridge
 
-Simple Vala App Storage Library
+A simple, hassle-free storage library to keep your data fresh.
+Ready out of the box, and comprehensive for vala newcomers. This library primarily contains the three following objects:
+
+- json_storage
+- string_storage
+- byte_storage
+
+all three are meant to represent a storage file saved on the disk
+Simply declare:
+
+```
+var mystorage = new Fridge.json_storage();
+```
+
+Or any variant depending what you want to store... And you are good to go! 
+Access mystorage.content, or assign it, to load and save. There are more options for more control, but the idea here is to set and forget.
+
+
 
 ## Build Instructions
 

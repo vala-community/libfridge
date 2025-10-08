@@ -1,5 +1,6 @@
 sources = files([
-  'library.vala'
+  'library.vala',
+  'json_storage.vala'
 ])
 
 libfridge = library(
