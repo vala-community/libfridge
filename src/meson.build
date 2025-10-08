@@ -1,7 +1,10 @@
 sources = files([
-  'library.vala',
-  'json_storage.vala'
+  'library.vala'
 ])
+
+if get_option('enable_json')
+  sources += files(['json_storage'])
+endif
 
 libfridge = library(
   LIBRARY_NAME + '-' + API_VERSION,

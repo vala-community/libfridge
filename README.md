@@ -41,6 +41,34 @@ To install libfridge:
 ninja install
 ```
 
+
+## Add to your flatpak project
+
+Simply copy the in your manifest before your app sources:
+
+```
+  - name: libfridge
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://github.com/vala-community/libfridge.git
+        tag: 0.0.1
+        commit: [NOT DONE YET]
+        x-checker-data:
+          type: git
+          tag-pattern: '^([\d.]+)$'
+```
+
+By default json_storage is included. If you do not use it, and wish to skip having a json dependency, you can add immediately after the buildsystem line:
+
+```
+    config-opts:
+      - -Denable_json=false
+```
+
+
+
+
 ## Documentation
 
 By default, documentation is built by default using [`valadoc`](https://docs.vala.dev/developer-guides/documentation/valadoc-guide.html)
