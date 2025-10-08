@@ -30,11 +30,14 @@ Features:
 - [x] Smart instancing: Each instance is its own distinct file 
 - [x] Cache: By default a cache lets you access content faster
 - [x] Optional error handling: You can connect to the error() signal
-
+- [x] Optional Json: You can rely on pretty pure vala here if you want to keep it light
 
 Wishlist of features:
 - [] More agressive trying to load/save in case of errors
 - [] Optional SQL storage i think?
+- [] Save to binary?
+- [] Integrated debounce saving?
+- [] Make shit async for cases with heavy objects?
 
 
 ## Add to your flatpak project
