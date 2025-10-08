@@ -14,8 +14,14 @@
 public class Fridge.json_storage : Object {
 
     /**
+    * Used to give a unique name for each new instance without file name
+    * Incremented during object creation, only when no argument has been passed
+    */
+    private static uint8 unnamed_storage_count = 0;
+
+    /**
     * This signal gets emitted when the content of the storage has been changed
-    ' This allows you to connect to your storage instance and trigger a function whenever there has been changes
+    * This allows you to connect to your storage instance and trigger a function whenever there has been changes
     */
     public signal void changed ();
 
@@ -40,20 +46,21 @@ public class Fridge.json_storage : Object {
 
     /**
     * The name of the file saved on disk. This can be set only upon creation
+    * Should there be no name, a default one will be assigned
     */
-    string filename { public get; private set;};
+    string filename { public get; private set;}
 
     /**
     * The path of the directory where the storage file is saved
     * This variable is not meant to be changed, and only as aid if the location is uncertain
     */
-    string data_directory { public get; private set;};
+    string data_directory { public get; private set;}
 
     /**
     * The full path of the storage file
     * This variable is not meant to be changed, and only as aid if the location is uncertain
     */
-    string storage_path { public get; private set;};
+    string storage_path { public get; private set;}
 
     /**
     * Create a representation of a storage file. If there is no file, the storage is considered empty
@@ -63,7 +70,7 @@ public class Fridge.json_storage : Object {
     * 
     * the storage emits a changed() signal whenever 
     */
-    public json_storage (string? name =  "storage.json") {
+    public json_storage (string? name =  "") {
         Object (filename: name);
     }
 
@@ -81,16 +88,25 @@ public class Fridge.json_storage : Object {
     * You can connect handlers to the storage via the changed() signal
     * If you expect errors to happen, connect a handler to error() signal
     */
-    public Json.Array content {
-        get { return load ();}
+    public Json.Array? content {
+        owned get { return load ();}
         set { save (value);}
     }
 
     /*************************************************/
     construct {
+
+        // Allow having several storage files without declaring a single name
+        // Each get a unique number depending on the order it is declared
+        // If the order is the same each time, there wouldnt be any storage clash
+        if (filename == "") {
+            filename = "storage_%i.json".printf (unnamed_storage_count);
+            unnamed_storage_count += 1;
+        }
+
         data_directory = Environment.get_user_data_dir ();
         storage_path = data_directory + "/" + filename;
-        check_if_stash ();
+        check_if_datadir ();
     }
 
     /*************************************************/
