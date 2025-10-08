@@ -34,7 +34,7 @@ Features:
 
 Wishlist of features:
 - [] More agressive trying to load/save in case of errors
-
+- [] Optional SQL storage i think?
 
 
 ## Add to your flatpak project
@@ -85,7 +85,6 @@ To install libfridge:
 ```
 ninja install
 ```
-
 
 ## Documentation
 
