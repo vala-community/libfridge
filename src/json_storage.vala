@@ -82,7 +82,7 @@ public class Fridge.json_storage : Object {
     * If you expect errors to happen, connect a handler to error() signal
     */
     public Json.Array content {
-        owned get { return load ();}
+        get { return load ();}
         set { save (value);}
     }
 
@@ -141,7 +141,7 @@ public class Fridge.json_storage : Object {
     * We simply return a copy of the cache in the event we track one and it isn't empty
     * Should the storage be empty, and thus the cache as well, we still check on-disk
     */
-    private Json.Array? load () {
+    private unowned Json.Array? load () {
         debug("[STORAGE] Loading from storage letsgo");
         check_if_datadir ();
 
