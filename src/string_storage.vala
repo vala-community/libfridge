@@ -11,7 +11,7 @@
 * You can optionally initialize it with with a file name
 * 
 */
-public class Fridge.json_storage : Object {
+public class Fridge.string_storage : Object {
 
     /**
     * Used to give a unique name for each new instance without file name
@@ -42,7 +42,7 @@ public class Fridge.json_storage : Object {
     /**
     * A copy of the storage file content.
     */
-    private Json.Array? cache;
+    private string? cache;
 
     /**
     * The name of the file saved on disk. This can be set only upon creation
@@ -70,7 +70,7 @@ public class Fridge.json_storage : Object {
     * 
     * the storage emits a changed() signal whenever 
     */
-    public json_storage (string? name =  "") {
+    public string_storage (string? name =  "") {
         Object (filename: name);
     }
 
@@ -88,7 +88,7 @@ public class Fridge.json_storage : Object {
     * You can connect handlers to the storage via the changed() signal
     * If you expect errors to happen, connect a handler to error() signal
     */
-    public Json.Array? content {
+    public string? content {
         owned get { return load ();}
         set { save (value);}
     }
@@ -132,17 +132,18 @@ public class Fridge.json_storage : Object {
     /**
     * Converts a Json.Node into a string and take care of saving it
     */
-    private void save (Json.Array? json_data) {
+    private void save (string? string_data) {
         debug("[STORAGE] Writing...");
         check_if_datadir ();
 
         try {
-            var generator = new Json.Generator ();
-            var node = new Json.Node (Json.NodeType.ARRAY);
-            node.set_array (json_data);
-            generator.set_root (node);
-            generator.to_file (storage_path);
-            if (keep_cache) { cache = json_data;};
+            var storage_file = File.new_for_path (storage_path);
+            var dostream = new DataOutputStream (
+                storage_file.replace (null, false, GLib.FileCreateFlags.REPLACE_DESTINATION)
+            );
+
+            dostream.put_string (string_data);
+            if (keep_cache) { cache = string_data;};
             changed ();
 
         } catch (Error e) {
@@ -157,7 +158,7 @@ public class Fridge.json_storage : Object {
     * We simply return a copy of the cache in the event we track one and it isn't empty
     * Should the storage be empty, and thus the cache as well, we still check on-disk
     */
-    private Json.Array? load () {
+    private string? load () {
         debug("[STORAGE] Loading from storage letsgo");
         check_if_datadir ();
 
@@ -165,21 +166,20 @@ public class Fridge.json_storage : Object {
             return cache;
         }
 
-        var parser = new Json.Parser ();
-        var array = new Json.Array ();
+        string string_data = null;
 
         try {
-            parser.load_from_mapped_file (storage_path);
-            var node = parser.get_root ();
-            array = node.get_array ();
-            if (keep_cache) { cache = array;};
+            var storage_file = File.new_for_path (storage_path);
+            var distream = new DataInputStream (storage_file.read (null));
+            string_data = distream.read_upto ("", -1, null);
+            if (keep_cache) { cache = string_data;};
 
         } catch (Error e) {
             warning ("[STORAGE] Failed to load from storage: " + e.message.to_string());
             error (e);
         }
 
-        return array;
+        return string_data;
     }
     
     
