@@ -7,39 +7,34 @@ Ready out of the box, and comprehensive for vala newcomers. This library primari
 - string_storage
 - byte_storage
 
-all three are meant to represent a storage file saved on the disk
-Simply declare:
+all three are meant to represent a storage file saved on the disk, and intended to contain a type of data. Simply declare:
 
 ```
 var mystorage = new Fridge.json_storage();
 ```
 
-Or any variant depending what you want to store... And you are good to go! 
-Access mystorage.content, or assign it, to load and save. There are more options for more control, but the idea here is to set and forget.
-
-
-
-## Build Instructions
-
-First, setup the build directory by running the following command in the project root:
+Or any variant depending what you want to store... And you are good to go!
+Save by doing:
 
 ```
-meson setup build --prefix=/usr
+mystorage.content = thing_to_save;
 ```
 
-Now change to the `build` directory (`cd build`) for the following commands:
-
-Build libfridge:
+Access it by doing:
 
 ```
-ninja
+var thing_to_load = mystorage.content;
 ```
 
-To install libfridge:
+Features:
+- [x] Smart instancing: Each instance is its own distinct file 
+- [x] Cache: By default a cache lets you access content faster
+- [x] Optional error handling: You can connect to the error() signal
 
-```
-ninja install
-```
+
+Wishlist of features:
+- [] More agressive trying to load/save in case of errors
+
 
 
 ## Add to your flatpak project
@@ -67,6 +62,29 @@ By default json_storage is included. If you do not use it, and wish to skip havi
 ```
 
 
+
+
+## Build Instructions
+
+First, setup the build directory by running the following command in the project root:
+
+```
+meson setup build --prefix=/usr
+```
+
+Now change to the `build` directory (`cd build`) for the following commands:
+
+Build libfridge:
+
+```
+ninja
+```
+
+To install libfridge:
+
+```
+ninja install
+```
 
 
 ## Documentation
