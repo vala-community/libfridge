@@ -48,19 +48,19 @@ public class Fridge.json_storage : Object {
     * The name of the file saved on disk. This can be set only upon creation
     * Should there be no name, a default one will be assigned
     */
-    string filename { public get; private set;}
+    public string filename { public get; private set;}
 
     /**
     * The path of the directory where the storage file is saved
     * This variable is not meant to be changed, and only as aid if the location is uncertain
     */
-    string data_directory { public get; private set;}
+    public string data_directory { public get; private set;}
 
     /**
     * The full path of the storage file
     * This variable is not meant to be changed, and only as aid if the location is uncertain
     */
-    string storage_path { public get; private set;}
+    public string storage_path { public get; private set;}
 
     /**
     * Create a representation of a storage file. If there is no file, the storage is considered empty

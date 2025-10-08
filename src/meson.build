@@ -1,6 +1,7 @@
 sources = files([
   'library.vala',
-  'string_storage.vala'
+  'string_storage.vala',
+  'demo.vala'
 ])
 
 if get_option('enable_json')
