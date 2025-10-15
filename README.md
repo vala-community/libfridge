@@ -34,7 +34,7 @@ Features:
 
 Wishlist of features:
 - [ ] More agressive trying to load/save in case of errors
-- [ ] Optional SQL storage i think?
+- [ ] Optional SQL storage i think? Something stupid: One key one value. Optional like the json one
 - [ ] Save to binary?
 - [ ] Integrated debounce saving?
 - [ ] Make shit async for cases with heavy objects?
