@@ -192,4 +192,12 @@ public class Fridge.string_storage : Object {
         debug("[STORAGE] Emptying cache");
         cache = null;
     }
+
+    /*************************************************/
+    /**
+    * Return whether storage is empty
+    */
+    private bool? is_empty () {
+        return (load() == null);
+    }
 }

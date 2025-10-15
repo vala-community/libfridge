@@ -182,7 +182,6 @@ public class Fridge.json_storage : Object {
         return array;
     }
     
-    
     /*************************************************/
     /**
     * Drop everything. The next time "content" is accessed, it will be read from disk
@@ -191,5 +190,13 @@ public class Fridge.json_storage : Object {
     private void empty_cache () {
         debug("[STORAGE] Emptying cache");
         cache = null;
+    }
+
+    /*************************************************/
+    /**
+    * Return whether storage is empty
+    */
+    private bool? is_empty () {
+        return (load() == null);
     }
 }
