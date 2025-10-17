@@ -33,10 +33,11 @@ Features:
 - [x] Optional Json: You can rely on pretty pure vala here if you want to keep it light
 
 Wishlist of features:
+- [ ] Add a contains() method, so people can do if (var in storageinstance)
+- [ ] Integrated debounce saving?
 - [ ] More agressive trying to load/save in case of errors
 - [ ] Optional SQL storage i think? Something stupid: One key one value. Optional like the json one
 - [ ] Save to binary?
-- [ ] Integrated debounce saving?
 - [ ] Make shit async for cases with heavy objects?
 - [ ] encrypted storage ? using some combined magic of libsecret and some traditional encrypt library? maybe a salt and a randomly generated password? so user only need unlock their keyring, and the random gen gets pulled out invisibly.
 
