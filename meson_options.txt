@@ -1,5 +1,2 @@
-option(
-  'enable_valadoc',
-  type: 'boolean',
-  value: true
-)
+option('enable_valadoc', type: 'boolean', value: true)
+option('enable_json', type : 'boolean', value : true)
