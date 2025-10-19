@@ -198,6 +198,7 @@ public class Fridge.string_storage : Object {
     * Return whether storage is empty
     */
     private bool is_empty () {
+        debug("[STORAGE] Checking if storage is empty");
         var currently_stored = load ();
         return ((currently_stored == null) || (currently_stored == ""));
     }
@@ -207,6 +208,7 @@ public class Fridge.string_storage : Object {
     * Return whether storage contains input
     */
     private bool contains (string? some_string) {
+        debug("[STORAGE] Checking if storage contains element");
         var currently_stored = load ();
 
         // True if storage is null, else false.
