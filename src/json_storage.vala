@@ -37,7 +37,7 @@ public class Fridge.json_storage : Object {
     * You can force it to be reloaded by using empty_cache, then accessing the storage content
     * This feature can be disabled anytime, but make sure to call empty_cache after disabling it to avoid keeping a stale cache in memory
     */
-    public bool keep_cache = true;
+    public bool keep_cache { get; set; default = true;}
 
     /**
     * A copy of the storage file content.

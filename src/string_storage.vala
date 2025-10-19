@@ -32,12 +32,12 @@ public class Fridge.string_storage : Object {
     public signal void error (Error e);
 
     /**
-    * Whether to keep a duplicate of the storage content to access storage very quickly 
+    * Whether to keep a duplicate of the storage content to access storage very quickly
     * By default this is set to true. Cache is regenerated when saving, and when loading if empty and enabled
     * You can force it to be reloaded by using empty_cache, then accessing the storage content
     * This feature can be disabled anytime, but make sure to call empty_cache after disabling it to avoid keeping a stale cache in memory
     */
-    public bool keep_cache = true;
+    public bool keep_cache { get; set; default = true;}
 
     /**
     * A copy of the storage file content.

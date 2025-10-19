@@ -31,9 +31,9 @@ Features:
 - [x] Cache: By default a cache lets you access content faster
 - [x] Optional error handling: You can connect to the error() signal
 - [x] Optional Json: You can rely on pretty pure vala here if you want to keep it light
+- [x] Add a contains() method, so people can do if (var in storageinstance)
 
 Wishlist of features:
-- [ ] Add a contains() method, so people can do if (var in storageinstance)
 - [ ] Integrated debounce saving?
 - [ ] More agressive trying to load/save in case of errors
 - [ ] Optional SQL storage i think? Something stupid: One key one value. Optional like the json one
