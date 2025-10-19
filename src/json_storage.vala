@@ -196,7 +196,31 @@ public class Fridge.json_storage : Object {
     /**
     * Return whether storage is empty
     */
-    private bool? is_empty () {
-        return (load() == null);
+    private bool is_empty () {
+        var currently_stored = load ();
+        return ((currently_stored == null) || (currently_stored.get_elements ().length () == 0));
     }
+
+    /*************************************************/
+    /**
+    * Return whether storage contains input
+    */
+    private bool contains (Json.Node? some_node) {
+        debug("[STORAGE] Checking if storage contains element");
+        var currently_stored = load ();
+
+        // True if storage is null, else false.
+        if (some_node == null) {
+            return (currently_stored == null);
+        }
+
+        foreach (var node in currently_stored.get_elements ()) {
+            if (some_node == node) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

@@ -197,7 +197,24 @@ public class Fridge.string_storage : Object {
     /**
     * Return whether storage is empty
     */
-    private bool? is_empty () {
-        return (load() == null);
+    private bool is_empty () {
+        var currently_stored = load ();
+        return ((currently_stored == null) || (currently_stored == ""));
     }
+
+    /*************************************************/
+    /**
+    * Return whether storage contains input
+    */
+    private bool contains (string? some_string) {
+        var currently_stored = load ();
+
+        // True if storage is null, else false.
+        if (some_string == null) {
+            return (currently_stored == null);
+        }
+
+        return (currently_stored.contains (some_string));
+    }
+
 }
